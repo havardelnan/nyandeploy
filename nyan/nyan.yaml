@@ -19,7 +19,9 @@ spec:
         - name: nyanweb
           image: daviey/nyan-cat-web
           ports:
-          - containerPort: 80
+            - containerPort: 80
+              name: server
+              protocol: TCP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -53,11 +55,11 @@ metadata:
   namespace: nyan
 spec:
   selector:
-    app: nyansvc
+    app: nyanweb
   type: ClusterIP
   ports:
   - name: nyansvc
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: server
 
