@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nyanweb
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nyanweb
@@ -37,7 +37,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ServiceName
+            name: nyansvc
             port:
               number: 80 
   tls:
