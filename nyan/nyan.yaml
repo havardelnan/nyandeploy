@@ -28,6 +28,7 @@ metadata:
   namespace: nyan
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+  ingressClassName: "nginx"
 spec:
   rules:
   - host: nyan.elnan.io
