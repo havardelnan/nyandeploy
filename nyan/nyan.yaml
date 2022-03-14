@@ -30,12 +30,13 @@ spec:
               memory: 50Mi
               cpu: 100m 
           securityContext:
-            fsGroup: 1001
-            runAsUser: 1001
             runAsNonRoot: true
             capabilities:
               drop:
                 - all
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
