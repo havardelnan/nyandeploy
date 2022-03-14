@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
         - name: nyanweb
-          image: daviey/nyan-cat-web
+          image: registry.elnan.io/library/nyancat
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name: server
               protocol: TCP
 ---
@@ -42,7 +42,7 @@ spec:
           service:
             name: nyansvc
             port:
-              number: 80 
+              number: 80
   tls:
     - hosts:
         - nyan.elnan.io
