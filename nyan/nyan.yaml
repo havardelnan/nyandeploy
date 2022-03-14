@@ -17,11 +17,33 @@ spec:
     spec:
       containers:
         - name: nyanweb
-          image: daviey/nyan-cat-web
+          image: registry.elnan.io/library/nyancat
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name: server
               protocol: TCP
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp-volume
+          resources:
+            limits:
+              memory: 100Mi
+              cpu: 200m
+            requests:
+              memory: 50Mi
+              cpu: 100m 
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - all
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -42,7 +64,7 @@ spec:
           service:
             name: nyansvc
             port:
-              number: 80 
+              number: 80
   tls:
     - hosts:
         - nyan.elnan.io
