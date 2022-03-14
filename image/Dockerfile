@@ -1,2 +1,4 @@
 FROM nginxinc/nginx-unprivileged:latest
-COPY nyan-cat/. /usr/share/nginx/html
+RUN apt update
+RUN apt upgrade -y
+COPY nyan-cat /usr/share/nginx/html
